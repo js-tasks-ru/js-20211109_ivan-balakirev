@@ -1,9 +1,10 @@
 /**
- * sum
+ * sum returns sum of arguments
+ *
  * @param {number} m base
  * @param {number} n index
  * @returns {number}
  */
-export default function sum(m, n) {
-
+export default function sum( m, n ) {
+  return m + n;
 }
