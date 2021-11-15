@@ -9,7 +9,7 @@ export const omit = ( obj, ...fields ) => {
 
   for ( const [key, value] of Object.entries( obj ) ) {
     // Look for the field in our object
-    if ( fields.indexOf( key ) === - 1 ) {
+    if ( ! fields.includes( key ) ) {
       picked[ key ] = value;
     }
   }

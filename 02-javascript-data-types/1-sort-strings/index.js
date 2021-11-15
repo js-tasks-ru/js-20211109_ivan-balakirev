@@ -5,32 +5,14 @@
  * @returns {string[]}
  */
 export function sortStrings( arr, param = 'asc' ) {
-  const unicodeArr = [];
-  const latinArr = [];
+  // Make a copy not to change the original array
+  let newArr = [...arr];
 
-  // Split array to unicode and lat to sort them separately
-  for ( let i = 0; i < arr.length; i ++ ) {
-    if ( arr[ i ].charCodeAt( 0 ) > 255 ) {
-      unicodeArr.push( arr[ i ] );
-    } else {
-      latinArr.push( arr[ i ] );
-    }
-  }
+  return newArr.sort( function( a, b ) {
+    const first = param === 'desc' ? b : a;
+    const last = param === 'desc' ? a : b;
 
-  latinArr.sort( function( a, b ) {
-    return a.localeCompare( b, undefined, { caseFirst: 'upper' } );
+    return first.localeCompare( last, ['ru', 'en'], { caseFirst: 'upper' } );
   } );
-
-  unicodeArr.sort( function( a, b ) {
-    return a.localeCompare( b, undefined, { caseFirst: 'upper' } );
-  } );
-
-  if ( param === 'desc' ) {
-    latinArr.reverse();
-    unicodeArr.reverse();
-    return latinArr.concat( unicodeArr );
-  }
-
-  return unicodeArr.concat( latinArr );
 }
 

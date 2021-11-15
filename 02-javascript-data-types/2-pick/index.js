@@ -9,10 +9,11 @@ export const pick = ( obj, ...fields ) => {
 
   for ( const [key, value] of Object.entries( obj ) ) {
     // Look for the field in our object
-    if ( fields.indexOf( key ) !== - 1 ) {
-      picked[key] = value;
+    if ( fields.includes( key ) ) {
+      picked[ key ] = value;
     }
   }
 
   return picked;
 };
+
