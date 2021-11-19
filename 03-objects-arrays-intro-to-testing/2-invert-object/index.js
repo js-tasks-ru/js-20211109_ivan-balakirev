@@ -10,7 +10,7 @@ export function invertObj( obj ) {
     return;
   }
 
-  for ( let key in obj ) {
+  for ( const key in obj ) {
     inverted[ obj[ key ] ] = key;
   }
 
