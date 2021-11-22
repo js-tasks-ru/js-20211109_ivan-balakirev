@@ -33,7 +33,6 @@ export default class ColumnChart {
     const elms = element.querySelectorAll( '[data-element]' );
     const subElms = {};
 
-    //    console.log(elms);
     for ( const elm of elms ) {
       subElms[ elm.dataset.element ] = elm;
     }
