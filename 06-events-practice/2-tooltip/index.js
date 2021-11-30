@@ -10,7 +10,6 @@ class Tooltip {
   initialize() {
     document.addEventListener( 'pointerover', this.show.bind( this ) );
     document.addEventListener( 'pointerout', this.hide.bind( this ) );
-    document.addEventListener( 'pointermove', this.getPosition.bind( this ) );
   }
 
   render( message ) {
@@ -24,10 +23,12 @@ class Tooltip {
     if ( e.target.dataset.tooltip !== undefined ) {
       this.render( e.target.dataset.tooltip );
     }
+    document.addEventListener( 'pointermove', this.getPosition.bind( this ) );
   }
 
   hide() {
     this.remove();
+    document.removeEventListener( 'pointermove', this.getPosition );
   }
 
   getPosition( e ) {
@@ -40,7 +41,6 @@ class Tooltip {
   removeListeners() {
     document.removeEventListener( 'pointerover', this.show );
     document.removeEventListener( 'pointerout', this.hide );
-    document.removeEventListener( 'pointerout', this.getPosition );
   }
 
   remove() {
