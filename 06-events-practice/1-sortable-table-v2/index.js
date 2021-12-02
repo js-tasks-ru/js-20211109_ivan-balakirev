@@ -24,11 +24,11 @@ export default class SortableTable {
     if ( this.sorted.id ) {
       this.sort( this.sorted.id, this.sorted.order ? this.sorted.order : null );
     } else {
-      this.subElements.header.addEventListener( 'pointerdown', this.hightlightArrowEvents.bind( this ) );
+      this.subElements.header.addEventListener( 'pointerdown', this.hightlightArrowEvents );
     }
   }
 
-  hightlightArrowEvents( e ) {
+  hightlightArrowEvents = ( e ) => {
     const closestHeader = e.target.closest( '.sortable-table__cell' );
     const isSortable = closestHeader.getAttribute( 'data-sortable' );
 
@@ -46,7 +46,7 @@ export default class SortableTable {
 
 
   highlightActiveArrow( id = this.sorted.id, order = this.sorted.order ) {
-    const $header = document.getElementsByClassName( 'sortable-table__header' )[ 0 ];
+    const $header = document.querySelectorAll( '.sortable-table__header' )[ 0 ];
     const $arrows = $header.querySelectorAll( '[data-sortable="true"]' );
 
     for ( const arrow of $arrows ) {
@@ -96,7 +96,7 @@ export default class SortableTable {
     this.element.innerHTML = this.template;
     this.subElements = this.getSubElements( this.element );
 
-    this.subElements.header.addEventListener( 'pointerdown', this.hightlightArrowEvents.bind( this ) );
+    this.subElements.header.addEventListener( 'pointerdown', this.hightlightArrowEvents );
 
     this.highlightActiveArrow( field, direction );
   }
