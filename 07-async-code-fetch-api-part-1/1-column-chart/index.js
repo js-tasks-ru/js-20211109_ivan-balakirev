@@ -110,6 +110,8 @@ export default class ColumnChart {
   }
 
   async redraw() {
+    this.value = Object.values( this.data ).reduce( ( previousValue, currentValue ) => previousValue + currentValue );
+    this.subElements.header.innerHTML = this.value;
     this.subElements.body.innerHTML = this.getColumns();
   }
 
