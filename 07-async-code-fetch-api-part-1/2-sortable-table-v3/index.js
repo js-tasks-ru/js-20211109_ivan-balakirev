@@ -25,6 +25,9 @@ export default class SortableTable {
     this.start = 0;
     this.end = this.chunk;
 
+    // Set offset for the infinite scroll
+    this.scrollOffset = 300;
+
     // Save loading status
     this.loading = false;
 
@@ -68,7 +71,7 @@ export default class SortableTable {
     const scrollTop = window.scrollY;
 
     // Load items before we reach the element
-    if ( ! this.loading && ( scrollTop + this.windowHeight >= elmHeight - 300 ) ) {
+    if ( ! this.loading && ( scrollTop + this.windowHeight >= elmHeight - this.scrollOffset ) ) {
       this.loading = true;
 
       this.start = 0;
@@ -220,7 +223,7 @@ export default class SortableTable {
   isSortable( type ) {
     for ( const items of this.headerConfig ) {
       if ( items.id === type ) {
-        return !! items.sortable;
+        return !!items.sortable;
       }
     }
 
